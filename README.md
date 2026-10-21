@@ -24,7 +24,7 @@ SITE_URL設定時はcanonical、OG URL、robots.txtのSitemap行、sitemap.xml�
 
 ## データと比較
 
-- `src/data/kaitori-official-data-2026-10-21.json`：添付JSONを変更せず配置した正本。
+- `src/data/kaitori-official-data-2026-10-21.json`：公式の申込条件とサイト表示文。表示文の編集によって調査時の原文から一部変更しています。判定に使う数値・状態・URLは維持しています。
 - `docs/research.md`：添付調査メモ。出典・例外・判定例。
 - `src/lib/compare.ts`：`no`を優先して除外、次に`unknown`、残りを`yes`と判定。表示はyes→unknown、同一状態はデータ順。
 - `tests/compare.test.ts`：調査メモの6例と点数境界・未入力・未確認・例外・リンク分離の検証。
@@ -49,6 +49,14 @@ SITE_URL設定時はcanonical、OG URL、robots.txtのSitemap行、sitemap.xml�
 レコードは `indexes[0]=kaitori-picker`、`blobs[0..3]=イベント名/ページパス/サービスID/コースID`、`doubles[0]=1` です。サービスIDは詳細ページのみ、コースIDは申込リンクのクリックのみ入ります。クエリ、点数、Cookie、ユーザーID、IP、User-Agent、参照元を記録しません。DNT/GPCによる停止を実装しています。
 
 WorkerはOrigin・イベント・パス・識別子の組み合わせと1KBのサイズ制限を検証します。未知の属性は拒否します。Origin検証はブラウザからの誤送信対策であり、不正な集計の完全防止を保証するものではありません。計測障害は画面操作・外部リンク遷移を妨げません。binding未設定・記録失敗は503です。サンプリングを含むAnalytics Engineの集計はCloudflare側で行います。
+
+## サイトの文章
+
+- サービスの違いを短く具体的に書く。抽象的なキャッチコピーや、比較方法を説く文章は不要。
+- 比較カードは必要な条件だけを表示し、同じ注意書きを重ねない。
+- 公式情報の調査・判定方法の内部用語（MVP、unknown、実装上の都合など）は一般向けページに出さない。
+- 料金・申込点数・返送料・承認方式などの重要条件は省略しない。
+- 表示文章の編集と公式条件データの変更は区別する。
 
 ## 未確認の情報
 
