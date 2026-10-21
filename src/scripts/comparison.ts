@@ -7,7 +7,7 @@ if (form) {
   const cards = new Map(Array.from(list.querySelectorAll<HTMLElement>('[data-course-id]')).map(card => [card.dataset.courseId!, card]));
   function update(interaction = false) {
     const error = document.querySelector<HTMLElement>('#form-error')!;
-    if (!form!.checkValidity()) { error.hidden = false; error.textContent = '点数は1〜9999の整数で入力してください。'; return; }
+    if (!form!.checkValidity()) { error.hidden = false; error.textContent = '点数は1〜9999で入力してください。'; return; }
     error.hidden = true;
     const values = new FormData(form!);
     const filters: Filters = {
@@ -22,14 +22,14 @@ if (form) {
       card.hidden = false;
       card.querySelector<HTMLElement>('[data-minimum]')!.textContent = minimumLabel(result.course, filters.itemCategory);
       const badge = card.querySelector<HTMLElement>('[data-status]')!;
-      badge.textContent = result.status === 'yes' ? '条件に合う' : '確認が必要';
+      badge.textContent = result.status === 'yes' ? '条件に合う' : '要確認';
       badge.classList.toggle('unknown', result.status === 'unknown');
       const reasons = card.querySelector<HTMLElement>('[data-reasons]')!;
       reasons.replaceChildren(...result.reasons.map(reason => { const li = document.createElement('li'); li.textContent = reason; return li; }));
       reasons.hidden = result.reasons.length === 0;
       list.append(card);
     });
-    document.querySelector('#result-count')!.textContent = `条件に合う ${results.filter(r => r.status === 'yes').length}件 ／ 確認が必要 ${results.filter(r => r.status === 'unknown').length}件`;
+    document.querySelector('#result-count')!.textContent = `条件に合う ${results.filter(r => r.status === 'yes').length}件・要確認 ${results.filter(r => r.status === 'unknown').length}件`;
     document.querySelector<HTMLElement>('#empty-results')!.hidden = results.length !== 0;
     if (interaction) track('comparison_interaction');
   }
