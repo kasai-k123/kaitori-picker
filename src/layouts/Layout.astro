@@ -2,7 +2,7 @@
 import '../styles/global.css';
 import { data } from '../lib/data';
 interface Props { title: string; description?: string; noindex?: boolean; serviceId?: string }
-const { title, description = '本やゲーム、ブランド品の宅配買取を、点数・受取方法・返送料で比較。5社6コースの基本条件を確認できます。', noindex = false, serviceId = '' } = Astro.props;
+const { title, description = '本・ゲーム・ブランド品などの宅配買取5社を、申込点数・送料・代金の受取方法で比較できます。', noindex = false, serviceId = '' } = Astro.props;
 const canonical = __SITE_URL_CONFIGURED__ ? new URL(Astro.url.pathname, Astro.site) : null;
 ---
 <!doctype html>
@@ -20,7 +20,7 @@ const canonical = __SITE_URL_CONFIGURED__ ? new URL(Astro.url.pathname, Astro.si
     <a class="skip" href="#main">本文へ</a>
     <header><a class="brand" href="/"><span aria-hidden="true">▣</span> 宅配買取えらび</a><nav aria-label="メイン"><a href="/">比較する</a><a href="/methodology/">比較の基準</a></nav></header>
     <main id="main"><slot /></main>
-    <footer><a class="brand" href="/">宅配買取えらび</a><p>公式情報の確認日：{data.asOf} · 5社6コース</p><nav aria-label="フッター"><a href="/methodology/">比較の基準・出典</a><a href="/privacy/">プライバシー</a></nav></footer>
+    <footer><a class="brand" href="/">宅配買取えらび</a><p>情報確認日：{data.asOf}</p><nav aria-label="フッター"><a href="/methodology/">比較の基準・出典</a><a href="/privacy/">プライバシーポリシー</a></nav></footer>
     <script>import '../scripts/analytics';</script>
   </body>
 </html>
