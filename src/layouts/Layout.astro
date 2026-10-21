@@ -9,6 +9,7 @@ const canonical = __SITE_URL_CONFIGURED__ ? new URL(Astro.url.pathname, Astro.si
 <html lang="ja">
   <head>
     <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="google-site-verification" content="nLMX616OEBbgQWFm_gMS4BeZqqw75xDjf75P6vsV53Q" />
     <title>{title} | {data.site.name}</title><meta name="description" content={description} />
     {canonical && <link rel="canonical" href={canonical} />}<meta name="robots" content={noindex || !__SITE_URL_CONFIGURED__ ? 'noindex, follow' : 'index, follow'} />
     <meta property="og:type" content="website" /><meta property="og:locale" content="ja_JP" />
