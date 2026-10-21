@@ -5,3 +5,4 @@ dist/
 .env
 .dev.vars
 *.log
+.seo-test-*/

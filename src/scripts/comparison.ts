@@ -1,5 +1,5 @@
 import { compare, type Filters } from '../lib/compare';
-import { type Category } from '../lib/data';
+import { minimumLabel, type Category } from '../lib/data';
 import { track } from './analytics';
 const form = document.querySelector<HTMLFormElement>('#comparison-form');
 if (form) {
@@ -20,6 +20,7 @@ if (form) {
     results.forEach(result => {
       const card = cards.get(result.course.id)!;
       card.hidden = false;
+      card.querySelector<HTMLElement>('[data-minimum]')!.textContent = minimumLabel(result.course, filters.itemCategory);
       const badge = card.querySelector<HTMLElement>('[data-status]')!;
       badge.textContent = result.status === 'yes' ? '条件に合う' : '確認が必要';
       badge.classList.toggle('unknown', result.status === 'unknown');

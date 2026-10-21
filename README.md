@@ -18,9 +18,9 @@ npm run build
 
 ## サイトURL
 
-`.env.example` を `.env` にコピーし、必要に応じて `SITE_URL` を変更します。環境変数はビルド時に読み込みます。初期値は `https://kaitori-picker.websl.workers.dev/` です。パス・クエリを含まないHTTP(S)のオリジンを指定してください。変更後は再ビルドが必要です。
+`.env.example` を `.env` にコピーし、必要に応じて `SITE_URL` を変更します。環境変数はビルド時に読み込みます。公開予定URLは `https://kaitori-picker.websl.workers.dev/` です。パス・クエリを含まないHTTP(S)のオリジンを指定してください。変更後は再ビルドが必要です。`.env.example` 自体は設定として読み込みません。
 
-canonical、OG URL、robots.txtのSitemap行、sitemap.xmlは同じSITE_URLから生成されます。404にはnoindexを指定し、サイトマップから除外します。アセットの404処理は `wrangler.jsonc` の `not_found_handling: 404-page` を使用します。
+SITE_URL設定時はcanonical、OG URL、robots.txtのSitemap行、sitemap.xmlを同じURLから生成します。未設定または空文字の場合は全ページをnoindexにし、canonical・OG URLを省略、sitemapは空、robots.txtは全クロール禁止にします。404は常にnoindexで、サイトマップから除外します。アセットの404処理は `wrangler.jsonc` の `not_found_handling: 404-page` を使用します。
 
 ## データと比較
 
