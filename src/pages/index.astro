@@ -1,0 +1,27 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CourseCard from '../components/CourseCard.astro';
+import { categories, courses } from '../lib/data';
+---
+<Layout title="売りたいものに合う宅配買取を探す">
+  <section class="hero"><p class="eyebrow">送る前に、条件を比較</p><h1>売りたいものに合う<br />宅配買取を探す。</h1><p>点数、代金の受取、返送料。<br class="mobile" />気になる条件から、5社6コースを比べられます。</p></section>
+  <section class="filter-panel" aria-labelledby="filter-title"><h2 id="filter-title">売りたいものと希望を選ぶ</h2>
+    <form id="comparison-form">
+      <div class="filters">
+        <label><span>01　商品カテゴリ</span><select name="itemCategory"><option value="">指定なし</option>{categories.map(([id, label]) => <option value={id}>{label}</option>)}</select></label>
+        <label><span>02　点数</span><input name="itemCount" type="number" min="1" max="9999" step="1" placeholder="未入力でも比較できます" inputmode="numeric" /></label>
+        <label><span>03　代金の受取方法</span><select name="payment"><option value="any">指定なし（ギフト等も含む）</option><option value="bank_direct_only">銀行への直接振込が必須</option></select></label>
+        <label><span>04　査定後の返送料</span><select name="freeReturn"><option value="any">指定なし</option><option value="free_after_appraisal">無料を希望する</option></select></label>
+      </div><div class="filter-bottom"><p>点数は選んだ1カテゴリ分です。無料返送の希望は、査定結果を見て売却を断る場合に適用します。</p><button type="reset" class="text-button">条件をリセット</button></div>
+    </form><p id="form-error" role="alert" hidden></p>
+  </section>
+  <noscript><p class="notice">条件で絞り込むにはJavaScriptを有効にしてください。以下に全6コースを掲載しています。</p></noscript>
+  <section class="results" aria-labelledby="results-title"><div class="results-heading"><h2 id="results-title">比較結果</h2><p id="result-count" role="status" aria-live="polite">6コースを掲載</p></div>
+    <p class="small">基本条件が合う順に表示します。買取価格のランキングではありません。個別の機種・ブランド・状態は各社で確認してください。</p>
+    <p class="notice">返送を希望する可能性がある場合は、自動承認を選ばないでください。自動承認では返却できません。</p>
+    <p id="empty-results" class="empty" hidden>条件に合う候補はありません。受取方法や返送料の希望を変えて比較してください。</p>
+    <div class="cards" id="course-list">{courses.map(course => <CourseCard course={course} />)}</div>
+  </section>
+  <aside class="guide"><h2>申込前に確認すること</h2><p>返送料に加え、承認期限・一部返送の可否・受取手数料も確認しましょう。各コースの詳細にまとめています。</p><a href="/methodology/">比較の基準と出典を見る →</a></aside>
+  <script>import '../scripts/comparison';</script>
+</Layout>
