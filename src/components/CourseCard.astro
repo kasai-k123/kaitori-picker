@@ -5,7 +5,7 @@ const { course } = Astro.props;
 const service = data.serviceRecords.find(s => s.id === course.serviceId)!;
 ---
 <article class="course-card" data-course-id={course.id}>
-  <div class="card-top"><span class="status" data-status>条件に合う</span></div>
+  <div class="card-top"><span class="status" data-status>掲載中</span></div>
   <h3>{course.name}</h3>
   <p>{course.summary}</p>
   <dl>
