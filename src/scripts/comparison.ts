@@ -16,20 +16,21 @@ if (form) {
       payment: values.get('payment') as Filters['payment'], freeReturn: values.get('freeReturn') as Filters['freeReturn']
     };
     const results = compare(filters);
+    const isUnfiltered = !filters.itemCategory && filters.itemCount === null && filters.payment === 'any' && filters.freeReturn === 'any';
     cards.forEach(card => { card.hidden = true; });
     results.forEach(result => {
       const card = cards.get(result.course.id)!;
       card.hidden = false;
       card.querySelector<HTMLElement>('[data-minimum]')!.textContent = minimumLabel(result.course, filters.itemCategory);
       const badge = card.querySelector<HTMLElement>('[data-status]')!;
-      badge.textContent = result.status === 'yes' ? '条件に合う' : '要確認';
+      badge.textContent = isUnfiltered ? '掲載中' : result.status === 'yes' ? '条件に合う' : '要確認';
       badge.classList.toggle('unknown', result.status === 'unknown');
       const reasons = card.querySelector<HTMLElement>('[data-reasons]')!;
       reasons.replaceChildren(...result.reasons.map(reason => { const li = document.createElement('li'); li.textContent = reason; return li; }));
       reasons.hidden = result.reasons.length === 0;
       list.append(card);
     });
-    document.querySelector('#result-count')!.textContent = `条件に合う ${results.filter(r => r.status === 'yes').length}件・要確認 ${results.filter(r => r.status === 'unknown').length}件`;
+    document.querySelector('#result-count')!.textContent = isUnfiltered ? `${results.length}コース` : `条件に合う ${results.filter(r => r.status === 'yes').length}件・要確認 ${results.filter(r => r.status === 'unknown').length}件`;
     document.querySelector<HTMLElement>('#empty-results')!.hidden = results.length !== 0;
     if (interaction) track('comparison_interaction');
   }
