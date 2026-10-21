@@ -1,0 +1,35 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CourseCard from '../components/CourseCard.astro';
+import { categories, courses } from '../lib/data';
+---
+<Layout title="宅配買取サービスを比較" description="本・ゲーム・ブランド品などの宅配買取5社を比較。売りたい物、点数、返送料、代金の受取方法から選べます。">
+  <section class="hero">
+    <h1>宅配買取えらび</h1>
+    <p>本やゲーム、ブランド品などの宅配買取5社を比較。売りたい物や点数から、条件に合うサービスを探せます。</p>
+  </section>
+  <section class="filter-panel" aria-labelledby="filter-title">
+    <h2 id="filter-title">条件で絞り込む</h2>
+    <form id="comparison-form">
+      <div class="filters">
+        <label><span>売りたい物</span><select name="itemCategory"><option value="">指定なし</option>{categories.map(([id, label]) => <option value={id}>{label}</option>)}</select></label>
+        <label><span>点数</span><input name="itemCount" type="number" min="1" max="9999" step="1" placeholder="点数を入力" inputmode="numeric" /></label>
+        <label><span>代金の受取方法</span><select name="payment"><option value="any">指定なし</option><option value="bank_direct_only">銀行振込を希望</option></select></label>
+        <label><span>査定後の返送料</span><select name="freeReturn"><option value="any">指定なし</option><option value="free_after_appraisal">無料がいい</option></select></label>
+      </div>
+      <div class="filter-bottom">
+        <p>返送料は査定額を確認してからキャンセルした場合の条件です。自動承認では返送できないサービスがあります。</p>
+        <button type="reset" class="text-button">条件をリセット</button>
+      </div>
+    </form>
+    <p id="form-error" role="alert" hidden></p>
+  </section>
+  <noscript><p class="notice">絞り込み機能にはJavaScriptが必要です。下の一覧から各社の情報を確認できます。</p></noscript>
+  <section class="results" aria-labelledby="results-title">
+    <div class="results-heading"><h2 id="results-title">宅配買取サービス一覧</h2><p id="result-count" role="status" aria-live="polite">6コース</p></div>
+    <p id="empty-results" class="empty" hidden>該当するサービスがありません。条件を変えて検索してください。</p>
+    <div class="cards" id="course-list">{courses.map(course => <CourseCard course={course} />)}</div>
+  </section>
+  <aside class="guide"><a href="/methodology/">比較の基準・公式情報 →</a></aside>
+  <script>import '../scripts/comparison';</script>
+</Layout>

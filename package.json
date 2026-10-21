@@ -1,0 +1,24 @@
+{
+  "name": "kaitori-picker",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22.22.0" },
+  "scripts": {
+    "dev": "astro dev",
+    "check": "astro check && tsc --noEmit -p tsconfig.worker.json",
+    "test": "tsx --test tests/*.test.ts",
+    "build": "astro build",
+    "preview": "npm run build && wrangler dev"
+  },
+  "dependencies": {
+    "astro": "^7.4.1"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.4",
+    "@types/node": "^24.0.0",
+    "tsx": "^4.20.0",
+    "typescript": "^5.9.0",
+    "wrangler": "^4.0.0"
+  }
+}

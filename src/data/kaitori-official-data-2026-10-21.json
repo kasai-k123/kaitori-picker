@@ -1,0 +1,739 @@
+{
+  "site": {
+    "name": "宅配買取えらび",
+    "slug": "kaitori-picker",
+    "workerName": "kaitori-picker",
+    "siteUrl": "https://kaitori-picker.websl.workers.dev/",
+    "analyticsDataset": "kaitori_picker_events"
+  },
+  "asOf": "2026-10-21",
+  "scope": "5社6コース。公式一般条件のみ。キャンペーンは判定しない。",
+  "states": [
+    "yes",
+    "no",
+    "unknown"
+  ],
+  "categoryLabels": {
+    "books_manga": "本・漫画",
+    "game_software": "ゲームソフト",
+    "game_console": "ゲーム機本体",
+    "cd_dvd_bluray": "CD・DVD・Blu-ray",
+    "phone_camera": "スマホ・カメラ",
+    "brand_bag_wallet": "ブランドバッグ・財布",
+    "figure_hobby": "フィギュア・ホビー"
+  },
+  "filterSpec": {
+    "itemCategory": {
+      "type": "single",
+      "required": false,
+      "values": [
+        "books_manga",
+        "game_software",
+        "game_console",
+        "cd_dvd_bluray",
+        "phone_camera",
+        "brand_bag_wallet",
+        "figure_hobby"
+      ]
+    },
+    "itemCount": {
+      "type": "integer",
+      "min": 1,
+      "max": 9999,
+      "nullable": true,
+      "note": "カテゴリ未選択での点数判定は原則 unknown。未入力なら点数フィルタ無効"
+    },
+    "payment": {
+      "values": [
+        "any",
+        "bank_direct_only"
+      ],
+      "note": "銀行口座への直接振込のみ厳密に絞る。ギフトカードも許容なら any と同義"
+    },
+    "freeReturn": {
+      "values": [
+        "any",
+        "free_after_appraisal"
+      ],
+      "note": "無料返送は査定結果確認後の不承諾時に限定。自動承認では返却不可。"
+    }
+  },
+  "serviceRecords": [
+    {
+      "id": "kaitoriouji",
+      "name": "買取王子",
+      "url": "https://www.kaitoriouji.jp/",
+      "detailPath": "/services/kaitoriouji/"
+    },
+    {
+      "id": "recommerce",
+      "name": "リコマース",
+      "url": "https://www.recommerce.co.jp/",
+      "detailPath": "/services/recommerce/"
+    },
+    {
+      "id": "bookoff",
+      "name": "ブックオフ宅配買取",
+      "url": "https://sell.bookoff.co.jp/",
+      "detailPath": "/services/bookoff/"
+    },
+    {
+      "id": "netoff",
+      "name": "ネットオフ",
+      "url": "https://www.netoff.co.jp/sell/",
+      "detailPath": "/services/netoff/"
+    },
+    {
+      "id": "pollet",
+      "name": "Pollet モノチャージ",
+      "url": "https://www.pollet.me/mono",
+      "detailPath": "/services/pollet/"
+    }
+  ],
+  "courses": [
+    {
+      "id": "kaitoriouji/general",
+      "serviceId": "kaitoriouji",
+      "courseId": "general",
+      "name": "買取王子",
+      "officialUrl": "https://www.kaitoriouji.jp/",
+      "applicationUrl": "https://www.kaitoriouji.jp/",
+      "affiliateUrl": null,
+      "summary": "本・ゲームから家電・ブランド品まで幅広く対応。段ボールも無料で取り寄せできます。",
+      "categories": {
+        "books_manga": {
+          "state": "yes",
+          "minItems": 1
+        },
+        "game_software": {
+          "state": "yes",
+          "minItems": 1
+        },
+        "game_console": {
+          "state": "yes",
+          "minItems": 1
+        },
+        "cd_dvd_bluray": {
+          "state": "yes",
+          "minItems": 1
+        },
+        "phone_camera": {
+          "state": "yes",
+          "minItems": 1
+        },
+        "brand_bag_wallet": {
+          "state": "yes",
+          "minItems": 1
+        },
+        "figure_hobby": {
+          "state": "yes",
+          "minItems": 1
+        }
+      },
+      "payout": {
+        "kind": "bank_or_gift",
+        "bankDirect": true,
+        "giftAvailable": true,
+        "display": "銀行振込・ギフトカードなど（初回は銀行振込）"
+      },
+      "fees": {
+        "outboundShipping": "free",
+        "returnShippingAfterAppraisalRejection": "free_if_manual_approval",
+        "packingBoxes": "free",
+        "notes": ""
+      },
+      "approval": {
+        "manualReviewAvailable": true,
+        "autoApprovalAvailable": true,
+        "returnRequiresManualApproval": true,
+        "partialReturn": false
+      },
+      "restrictions": [
+        "18歳未満は申し込めません。",
+        "品物の種類や状態によっては買取対象外となります。",
+        "査定結果の連絡から7日以上返事がない場合は、承認したものとして扱われます。"
+      ],
+      "sourceIds": [
+        "O1",
+        "O2"
+      ],
+      "verifiedAt": "2026-10-21"
+    },
+    {
+      "id": "recommerce/general",
+      "serviceId": "recommerce",
+      "courseId": "general",
+      "name": "リコマース",
+      "officialUrl": "https://www.recommerce.co.jp/",
+      "applicationUrl": "https://www.recommerce.co.jp/",
+      "affiliateUrl": null,
+      "summary": "本・ゲームなどを1点から買取。代金はAmazonギフトカードで受け取れます。",
+      "categories": {
+        "books_manga": {
+          "state": "yes",
+          "minItems": 1
+        },
+        "game_software": {
+          "state": "yes",
+          "minItems": 1
+        },
+        "game_console": {
+          "state": "yes",
+          "minItems": 1
+        },
+        "cd_dvd_bluray": {
+          "state": "yes",
+          "minItems": 1
+        },
+        "phone_camera": {
+          "state": "yes",
+          "minItems": 1
+        },
+        "brand_bag_wallet": {
+          "state": "yes",
+          "minItems": 1
+        },
+        "figure_hobby": {
+          "state": "yes",
+          "minItems": 1
+        }
+      },
+      "payout": {
+        "kind": "gift_only",
+        "bankDirect": false,
+        "giftAvailable": true,
+        "display": "Amazonギフトカードのみ"
+      },
+      "fees": {
+        "outboundShipping": "free",
+        "returnShippingAfterAppraisalRejection": "free_if_manual_approval",
+        "packingBoxes": "free",
+        "notes": "発送前のキャンセルでも送料がかかる場合があります。"
+      },
+      "approval": {
+        "manualReviewAvailable": true,
+        "autoApprovalAvailable": true,
+        "returnRequiresManualApproval": true,
+        "partialReturn": false
+      },
+      "restrictions": [
+        "18歳未満は申し込めません。",
+        "初回は本人確認書類に記載された住所から集荷します。",
+        "同じ本やゲームソフトを複数送ることはできません。",
+        "衣類は対象外ですが、ブランドバッグは買取対象です。"
+      ],
+      "sourceIds": [
+        "R1",
+        "R2",
+        "R3"
+      ],
+      "verifiedAt": "2026-10-21"
+    },
+    {
+      "id": "bookoff/general",
+      "serviceId": "bookoff",
+      "courseId": "general",
+      "name": "ブックオフ宅配買取",
+      "officialUrl": "https://sell.bookoff.co.jp/",
+      "applicationUrl": "https://sell.bookoff.co.jp/",
+      "affiliateUrl": null,
+      "summary": "本・漫画は通常10点から、ゲームやCDなどは3点から。自宅まで集荷に来てもらえます。",
+      "categories": {
+        "books_manga": {
+          "state": "yes",
+          "minItems": 10,
+          "note": "本・漫画のみの場合は10点以上。"
+        },
+        "game_software": {
+          "state": "yes",
+          "minItems": 3,
+          "note": "買取価格が1,000円以上の対象ソフトは、1点でも申し込める場合があります。",
+          "reason": "high_value_software_exception"
+        },
+        "game_console": {
+          "state": "yes",
+          "minItems": 1,
+          "note": "対応機種や商品の状態によって買取対象外となる場合があります。"
+        },
+        "cd_dvd_bluray": {
+          "state": "yes",
+          "minItems": 3,
+          "note": "買取価格が1,000円以上の対象ソフトは、1点でも申し込める場合があります。",
+          "reason": "high_value_software_exception"
+        },
+        "phone_camera": {
+          "state": "yes",
+          "minItems": 1,
+          "note": "対象機種・製造年などに条件があります。"
+        },
+        "brand_bag_wallet": {
+          "state": "yes",
+          "minItems": 1,
+          "note": "取扱い対象のブランドに限ります。"
+        },
+        "figure_hobby": {
+          "state": "yes",
+          "minItems": 1,
+          "note": "対象の商品・シリーズに制限があります。"
+        }
+      },
+      "payout": {
+        "kind": "bank_only",
+        "bankDirect": true,
+        "giftAvailable": false,
+        "display": "銀行振込"
+      },
+      "fees": {
+        "outboundShipping": "free",
+        "returnShippingAfterAppraisalRejection": "paid_if_manual_approval",
+        "packingBoxes": "paid_option_200_yen",
+        "notes": "査定額を確認して返送を希望する場合は「あんしん返送コース」を選びます。返送料は自己負担です。"
+      },
+      "approval": {
+        "manualReviewAvailable": true,
+        "autoApprovalAvailable": true,
+        "returnRequiresManualApproval": true,
+        "partialReturn": null
+      },
+      "restrictions": [
+        "同じ商品を複数送る場合は制限があります。",
+        "商品の状態によっては買い取れません。"
+      ],
+      "sourceIds": [
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "B6",
+        "B7"
+      ],
+      "verifiedAt": "2026-10-21"
+    },
+    {
+      "id": "netoff/books-games",
+      "serviceId": "netoff",
+      "courseId": "books-games",
+      "name": "ネットオフ（本・ゲーム買取）",
+      "officialUrl": "https://www.netoff.co.jp/sell/book/book/",
+      "applicationUrl": "https://www.netoff.co.jp/sell/book/book/",
+      "affiliateUrl": null,
+      "summary": "本は通常30点から、ゲームソフト・DVDなどは3点から申し込めます。",
+      "categories": {
+        "books_manga": {
+          "state": "yes",
+          "minItems": 30,
+          "note": "クーポンによっては10点から申し込める場合があります。"
+        },
+        "game_software": {
+          "state": "yes",
+          "minItems": 3,
+          "note": "ソフト類は3点以上"
+        },
+        "game_console": {
+          "state": "yes",
+          "minItems": null,
+          "note": "ゲーム機本体の最低申込点数は要確認です。"
+        },
+        "cd_dvd_bluray": {
+          "state": "yes",
+          "minItems": 3,
+          "note": "ソフト類は3点以上"
+        },
+        "phone_camera": {
+          "state": "no",
+          "minItems": null
+        },
+        "brand_bag_wallet": {
+          "state": "no",
+          "minItems": null
+        },
+        "figure_hobby": {
+          "state": "no",
+          "minItems": null,
+          "note": "フィギュアなどは別の買取コースが案内されています。"
+        }
+      },
+      "payout": {
+        "kind": "bank_only",
+        "bankDirect": true,
+        "giftAvailable": false,
+        "display": "銀行振込"
+      },
+      "fees": {
+        "outboundShipping": "free",
+        "returnShippingAfterAppraisalRejection": "paid",
+        "packingBoxes": "free_up_to_6_boxes",
+        "notes": "査定後の返送料は1箱800〜2,400円が目安です。"
+      },
+      "approval": {
+        "manualReviewAvailable": true,
+        "autoApprovalAvailable": null,
+        "returnRequiresManualApproval": true,
+        "partialReturn": false
+      },
+      "restrictions": [
+        "本のみの場合は通常30点以上。クーポンによって申込条件が変わる場合があります。",
+        "未開封の商品など、買取対象に制限があります。"
+      ],
+      "sourceIds": [
+        "N1",
+        "N2",
+        "N4",
+        "N5",
+        "N6"
+      ],
+      "verifiedAt": "2026-10-21"
+    },
+    {
+      "id": "netoff/brand-general",
+      "serviceId": "netoff",
+      "courseId": "brand-general",
+      "name": "ネットオフ（ブランド・総合買取）",
+      "officialUrl": "https://www.netoff.co.jp/sell/general/",
+      "applicationUrl": "https://www.netoff.co.jp/sell/general/",
+      "affiliateUrl": null,
+      "summary": "ブランドバッグ・財布、スマホ、カメラなどを1点から買取。",
+      "categories": {
+        "books_manga": {
+          "state": "no",
+          "minItems": null
+        },
+        "game_software": {
+          "state": "no",
+          "minItems": null
+        },
+        "game_console": {
+          "state": "no",
+          "minItems": null,
+          "note": "ゲーム機は本・ゲーム買取コースをご確認ください。"
+        },
+        "cd_dvd_bluray": {
+          "state": "no",
+          "minItems": null
+        },
+        "phone_camera": {
+          "state": "yes",
+          "minItems": 1,
+          "note": "スマホ・タブレット・カメラなど。"
+        },
+        "brand_bag_wallet": {
+          "state": "yes",
+          "minItems": 1,
+          "note": "ブランドバッグ・財布など。"
+        },
+        "figure_hobby": {
+          "state": "unknown",
+          "minItems": null,
+          "note": "フィギュアは別の専門コースが案内されている場合があります。"
+        }
+      },
+      "payout": {
+        "kind": "bank_only",
+        "bankDirect": true,
+        "giftAvailable": false,
+        "display": "銀行振込"
+      },
+      "fees": {
+        "outboundShipping": "free",
+        "returnShippingAfterAppraisalRejection": "free_if_manual_approval",
+        "packingBoxes": "free_or_unknown",
+        "notes": "買取対象外品の返送条件は別途確認が必要です。"
+      },
+      "approval": {
+        "manualReviewAvailable": true,
+        "autoApprovalAvailable": null,
+        "returnRequiresManualApproval": true,
+        "partialReturn": false
+      },
+      "restrictions": [
+        "18歳未満と高校生は申し込めません。",
+        "対象ブランドや商品の状態によっては買い取れません。"
+      ],
+      "sourceIds": [
+        "N1",
+        "N3",
+        "N4"
+      ],
+      "verifiedAt": "2026-10-21"
+    },
+    {
+      "id": "pollet/general",
+      "serviceId": "pollet",
+      "courseId": "general",
+      "name": "Pollet モノチャージ",
+      "officialUrl": "https://www.pollet.me/mono",
+      "applicationUrl": "https://www.pollet.me/mono",
+      "affiliateUrl": null,
+      "summary": "本・ゲーム・ブランド品などをまとめて査定。代金はPollet残高で受け取れます。",
+      "categories": {
+        "books_manga": {
+          "state": "unknown",
+          "minItems": null,
+          "note": "雑誌や全巻そろっていない漫画は対象外。最低申込点数は要確認です。"
+        },
+        "game_software": {
+          "state": "yes",
+          "minItems": null,
+          "note": "ゲームソフトの最低申込点数は要確認です。"
+        },
+        "game_console": {
+          "state": "yes",
+          "minItems": null,
+          "note": "ゲーム機本体の最低申込点数は要確認です。"
+        },
+        "cd_dvd_bluray": {
+          "state": "unknown",
+          "minItems": null,
+          "note": "CD・DVDはそれぞれ20点まで。Blu-rayの条件は要確認です。",
+          "reason": "category_max_20_cd_dvd"
+        },
+        "phone_camera": {
+          "state": "yes",
+          "minItems": null,
+          "note": "スマホ・カメラの最低申込点数は要確認です。"
+        },
+        "brand_bag_wallet": {
+          "state": "yes",
+          "minItems": null,
+          "note": "対象ブランドや商品の状態に制限があります。最低申込点数は要確認です。"
+        },
+        "figure_hobby": {
+          "state": "unknown",
+          "minItems": null,
+          "note": "フィギュアは種類によって取扱いが異なります。"
+        }
+      },
+      "payout": {
+        "kind": "balance_then_cash_or_gift",
+        "bankDirect": false,
+        "giftAvailable": true,
+        "display": "Pollet残高（銀行出金・ギフト交換可。銀行出金は通常1回200円）"
+      },
+      "fees": {
+        "outboundShipping": "first_time_free_repeat_low_appraisal_offset",
+        "returnShippingAfterAppraisalRejection": "paid",
+        "packingBoxes": "free_or_unknown",
+        "notes": "査定後のキャンセルは着払いで、返送料は1箱1,500〜3,000円が目安です。"
+      },
+      "approval": {
+        "manualReviewAvailable": true,
+        "autoApprovalAvailable": true,
+        "returnRequiresManualApproval": true,
+        "partialReturn": false
+      },
+      "restrictions": [
+        "査定結果の連絡から7日以内に返事がない場合は、承認したものとして扱われます。",
+        "沖縄県・離島からは集荷できません。",
+        "0円査定の商品は、原則として返送されず0円で買い取られます。",
+        "CD・DVDはそれぞれ20点までです。"
+      ],
+      "sourceIds": [
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5",
+        "P6",
+        "P7",
+        "P8",
+        "P9",
+        "P10"
+      ],
+      "verifiedAt": "2026-10-21"
+    }
+  ],
+  "sources": [
+    {
+      "id": "O1",
+      "label": "買取王子・トップ（1点から、送料・箱）",
+      "url": "https://www.kaitoriouji.jp/",
+      "checkedAt": "2026-10-21"
+    },
+    {
+      "id": "O2",
+      "label": "買取王子・FAQ（返送、承認、入金、本人確認、買取不可）",
+      "url": "https://www.kaitoriouji.jp/faq/",
+      "checkedAt": "2026-10-21"
+    },
+    {
+      "id": "R1",
+      "label": "リコマース・サービス紹介（単品、返送、箱、ギフトカード）",
+      "url": "https://www.recommerce.co.jp/help/service.html",
+      "checkedAt": "2026-10-21"
+    },
+    {
+      "id": "R2",
+      "label": "リコマース・FAQ（返送、自動承認、現金不可）",
+      "url": "https://www.recommerce.co.jp/help/faq.html",
+      "checkedAt": "2026-10-21"
+    },
+    {
+      "id": "R3",
+      "label": "リコマース・買取対象商品",
+      "url": "https://www.recommerce.co.jp/help/item.html",
+      "checkedAt": "2026-10-21"
+    },
+    {
+      "id": "B1",
+      "label": "ブックオフ・宅配買取の流れ・最低申込点数",
+      "url": "https://www.bookoffonline.co.jp/files/user-guide/",
+      "checkedAt": "2026-10-21"
+    },
+    {
+      "id": "B2",
+      "label": "ブックオフ・本買取と返送料",
+      "url": "https://www.bookoffonline.co.jp/files/sell/category/book/",
+      "checkedAt": "2026-10-21"
+    },
+    {
+      "id": "B3",
+      "label": "ブックオフ・宅配買取の箱（200円）",
+      "url": "https://www.bookoffonline.co.jp/files/sell/package.html",
+      "checkedAt": "2026-10-21"
+    },
+    {
+      "id": "B4",
+      "label": "ブックオフ・買取対象の家電等",
+      "url": "https://www.bookoffonline.co.jp/files/sell/category/kaden-digital/",
+      "checkedAt": "2026-10-21"
+    },
+    {
+      "id": "B5",
+      "label": "ブックオフ・音楽映像ゲームの対象",
+      "url": "https://www.bookoffonline.co.jp/files/sell/category/soft/",
+      "checkedAt": "2026-10-21"
+    },
+    {
+      "id": "B6",
+      "label": "ブックオフ・ホビー買取の対象",
+      "url": "https://www.bookoffonline.co.jp/files/sell/category/hobby/",
+      "checkedAt": "2026-10-21"
+    },
+    {
+      "id": "B7",
+      "label": "ブックオフ・2026年5月リニューアル",
+      "url": "https://www.bookoffonline.co.jp/files/sell/2026renewal.html",
+      "checkedAt": "2026-10-21"
+    },
+    {
+      "id": "N1",
+      "label": "ネットオフ・FAQ（コースと最低点数）",
+      "url": "https://www.netoff.co.jp/guide/qa.jsp",
+      "checkedAt": "2026-10-21"
+    },
+    {
+      "id": "N2",
+      "label": "ネットオフ・本&ゲーム（30点/3点）",
+      "url": "https://www.netoff.co.jp/sell/book/book/",
+      "checkedAt": "2026-10-21"
+    },
+    {
+      "id": "N3",
+      "label": "ネットオフ・ブランド&総合（1点、返送料）",
+      "url": "https://www.netoff.co.jp/sell/general/",
+      "checkedAt": "2026-10-21"
+    },
+    {
+      "id": "N4",
+      "label": "ネットオフ・宅配買取TOP（商品、返送料、ダンボール）",
+      "url": "https://www.netoff.co.jp/sell/",
+      "checkedAt": "2026-10-21"
+    },
+    {
+      "id": "N5",
+      "label": "ネットオフ・本&ゲームの買取対象",
+      "url": "https://www.netoff.co.jp/sell/criteria_ok/",
+      "checkedAt": "2026-10-21"
+    },
+    {
+      "id": "N6",
+      "label": "ネットオフ・期限/条件付きクーポン（判定には不使用）",
+      "url": "https://www.netoff.co.jp/campaign/",
+      "checkedAt": "2026-10-21"
+    },
+    {
+      "id": "P1",
+      "label": "Pollet・モノチャージTOP",
+      "url": "https://www.pollet.me/mono",
+      "checkedAt": "2026-10-21"
+    },
+    {
+      "id": "P2",
+      "label": "Pollet・買取対象とCD/DVD上限",
+      "url": "https://monocharge.pollet.me/target-items/",
+      "checkedAt": "2026-10-21"
+    },
+    {
+      "id": "P3",
+      "label": "Pollet・買取対象外と漫画/雑誌制限",
+      "url": "https://polletcorp.zendesk.com/hc/ja/articles/49619003563929-%E8%B2%B7%E5%8F%96%E3%81%A7%E3%81%8D%E3%81%AA%E3%81%84%E3%82%A2%E3%82%A4%E3%83%86%E3%83%A0%E3%82%92%E6%95%99%E3%81%88%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84",
+      "checkedAt": "2026-10-21"
+    },
+    {
+      "id": "P4",
+      "label": "Pollet・モノチャージ利用規約",
+      "url": "https://polletcorp.zendesk.com/hc/ja/articles/360040624812",
+      "checkedAt": "2026-10-21"
+    },
+    {
+      "id": "P5",
+      "label": "Pollet・査定後の返送料と承諾期限",
+      "url": "https://polletcorp.zendesk.com/hc/ja/articles/360049663371",
+      "checkedAt": "2026-10-21"
+    },
+    {
+      "id": "P6",
+      "label": "Pollet・送料充当（2026年9月1日〜）",
+      "url": "https://polletcorp.zendesk.com/hc/ja/articles/59563442397593-%E9%80%81%E6%96%99%E5%85%85%E5%BD%93%E3%81%A8%E3%81%AF",
+      "checkedAt": "2026-10-21"
+    },
+    {
+      "id": "P7",
+      "label": "Pollet・残高から銀行出金",
+      "url": "https://polletcorp.zendesk.com/hc/ja/articles/4403461481229",
+      "checkedAt": "2026-10-21"
+    },
+    {
+      "id": "P8",
+      "label": "Pollet・銀行出金手数料（通常200円）",
+      "url": "https://polletcorp.zendesk.com/hc/ja/articles/4403534113677",
+      "checkedAt": "2026-10-21"
+    },
+    {
+      "id": "P9",
+      "label": "Pollet・モノチャージの流れ・ギフトカード交換",
+      "url": "https://polletcorp.zendesk.com/hc/ja/articles/360038672712",
+      "checkedAt": "2026-10-21"
+    },
+    {
+      "id": "P10",
+      "label": "Pollet・買取不可品は原則0円買取",
+      "url": "https://polletcorp.zendesk.com/hc/ja/articles/12487676578201",
+      "checkedAt": "2026-10-21"
+    }
+  ],
+  "decisionRules": {
+    "unselectedCategory": "no category match filtering",
+    "unselectedCount": "skip count evaluation",
+    "countNull": "if count specified and minItems null, unknown except state no",
+    "exception": "if count below minItems and reason high_value_software_exception, unknown, not no",
+    "multiInput": "MVP one category, count applies only to that category",
+    "bookoffOtherGenres": "single category book below 10 no; software 1 or 2 may be unknown",
+    "polletDisc": "CD/DVD >20 no, if CD/DVD/Blu-ray mixed cannot distinguish, prefer unknown for 21+ unless separate CD/DVD from Blu-ray in UI",
+    "payment": "bank_direct_only excludes gift_only and balance_then_cash_or_gift",
+    "return": "free_after_appraisal excludes paid and paid_if_manual_approval; free_if_manual_approval matches with manualApproval caveat",
+    "status": "no precedence; then unknown; else yes",
+    "sorting": "yes then unknown then fixed source order; no hidden"
+  },
+  "knownLimitations": [
+    "Polletの全ジャンル共通最低申込点数を公式情報から確認できなかった。1点からとは表示しない。",
+    "ネットオフのゲーム機本体単品の基本申込点数はコース情報だけでは確定できない。",
+    "Polletのフィギュア全般およびネットオフ総合コースのフィギュアは商品別確認が必要。",
+    "CD・DVD・Blu-ray一括カテゴリだとPolletのCD/DVD20点上限を正確に表現できない。推奨はCD・DVDとBlu-rayを分割するか、上限超をunknown扱いにする。",
+    "ブックオフのソフト1点例外は買取価格が分からないためunknown。",
+    "ネットオフ公式サイトの別「家電買取」の案内ではゲーム機1点・返送料無料。今回は本・ゲームコース側と混同しない。",
+    "各社個別商品の状態・ブランド・年代・地域などはカテゴリレベルでは保証不可。",
+    "正式な申込完了画面（ログイン必須含む）に深い直リンクは置かず、公式の申込入口を使用。"
+  ]
+}

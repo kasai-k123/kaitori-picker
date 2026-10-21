@@ -1,0 +1,40 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { data, courses, categories, applicationLink, returnLabel, shippingLabel, boxLabel } from '../../lib/data';
+export function getStaticPaths() { return data.serviceRecords.map(service => ({ params: { id: service.id }, props: { service } })); }
+const { service } = Astro.props;
+const selected = courses.filter(c => c.serviceId === service.id);
+---
+<Layout title={`${service.name}の買取条件・送料`} serviceId={service.id}>
+  <div class="page-heading">
+    <a href="/">← サービス一覧に戻る</a>
+    <h1>{service.name}</h1>
+    <p class="small">情報確認日：{data.asOf}</p>
+    {selected.length > 1 && <nav aria-label="コース"><a href="#books-games">本・ゲーム買取</a><a href="#brand-general">ブランド・総合買取</a></nav>}
+  </div>
+  {selected.map(course => <section class="detail" id={course.courseId}>
+    <h2>{selected.length > 1 ? course.name : '料金・申込条件'}</h2>
+    <p>{course.summary}</p>
+    <dl class="detail-facts">
+      <dt>発送送料</dt><dd>{shippingLabel(course)}</dd>
+      <dt>査定後の返送料</dt><dd>{returnLabel(course)}</dd>
+      <dt>代金の受取</dt><dd>{course.payout.display}</dd>
+      <dt>梱包用の箱</dt><dd>{boxLabel(course)}</dd>
+      <dt>一部商品の返送</dt><dd>{course.approval.partialReturn === null ? '要確認' : course.approval.partialReturn ? '可能' : '不可'}</dd>
+      <dt>自動承認</dt><dd>{course.approval.autoApprovalAvailable === null ? '要確認' : course.approval.autoApprovalAvailable ? '選択可（選ぶと返送不可）' : 'なし'}</dd>
+    </dl>
+    {course.fees.notes && <p class="notice">{course.fees.notes}</p>}
+    <h3>買取対象・最低申込点数</h3>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th scope="col">商品</th><th scope="col">申込点数</th><th scope="col">補足</th></tr></thead>
+        <tbody>{categories.map(([id, label]) => { const rule = course.categories[id]; return <tr><th scope="row">{label}</th><td>{rule.state === 'no' ? '対象外' : rule.state === 'unknown' ? '取扱条件を確認' : rule.minItems === null ? '最低点数を確認' : `${rule.minItems}点から`}</td><td>{rule.note || '—'}</td></tr>; })}</tbody>
+      </table>
+    </div>
+    <h3>申込み・査定について</h3>
+    <ul>{course.restrictions.map(text => <li>{text}</li>)}</ul>
+    <a class="button" href={applicationLink(course).url} data-outbound={course.id}>公式サイトで申し込む ↗</a>
+    <h3>参考にした公式ページ</h3>
+    <ul class="sources">{data.sources.filter(source => course.sourceIds.includes(source.id)).map(source => <li><a href={source.url}>{source.label}</a><span class="small">（{source.checkedAt}確認）</span></li>)}</ul>
+  </section>)}
+</Layout>
